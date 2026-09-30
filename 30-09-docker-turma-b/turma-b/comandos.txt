@@ -1,0 +1,332 @@
+COMANDOS:
+docker info
+
+$pastaSite = (Resolve-Path .\site).Path
+
+docker run -d --name docker-b -p 127.0.0.1:8081:80 --mount "type=bind,source=$pastaSite,target=/usr/share/nginx/html,readonly" nginx:alpine
+
+docker ps
+
+docker stop docker-b
+
+docker rm docker-b
+
+$pastaSite = (Resolve-Path .\site).Path
+
+docker run -d --name docker-b -p 127.0.0.1:8091:80 --mount "type=bind,source=$pastaSite,target=/usr/share/nginx/html,readonly" nginx:alpine
+
+docker ps
+
+docker stop docker-b
+
+docker inspect --format '{{.State.Status}}' docker-b
+
+Resultado do inspect:
+exited
+
+docker ps -a --filter name=docker-b
+
+==================================
+
+COMANDOS COM AS SAÍDAS:
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> dir
+
+
+    Diretório: C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        30/09/2026     19:30                site
+-a----        30/09/2026     19:30           7598 enunciado.md
+
+
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker info
+Client:
+ Version:    29.8.0
+ Context:    desktop-linux
+ Debug Mode: false
+ Plugins:
+  agent: Docker AI Agent Runner (Docker Inc.)
+    Version:  v1.140.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-agent.exe
+  ai: Docker AI Agent - Ask Gordon (Docker Inc.)
+    Version:  v1.31.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-ai.exe
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.37.1
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-buildx.exe
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.5.1
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-compose.exe
+  debug: Get a shell into any image or container (Docker Inc.)
+    Version:  0.0.47
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-debug.exe
+  desktop: Docker Desktop commands (Docker Inc.)
+    Version:  v0.4.4
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-desktop.exe
+  dhi: CLI for managing Docker Hardened Images (Docker Inc.)
+    Version:  v0.0.7
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-dhi.exe
+  extension: Manages Docker extensions (Docker Inc.)
+    Version:  v0.2.31
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-extension.exe
+  init: Creates Docker-related starter files for your project (Docker Inc.)
+    Version:  v1.4.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-init.exe
+  mcp: Docker MCP Plugin (Docker Inc.)
+    Version:  v0.43.3
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-mcp.exe
+  model: Docker Model Runner (Docker Inc.)
+    Version:  v1.2.6
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-model.exe
+  offload: Docker Offload (Docker Inc.)
+    Version:  v0.6.27
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-offload.exe
+  pass: Docker Pass Secrets Manager Plugin (beta) (Docker Inc.)
+    Version:  v0.2.2
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-pass.exe
+  sandbox: "docker sandbox" is deprecated, use Docker Sandboxes instead (Docker Inc.)
+    Version:  v0.13.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-sandbox.exe
+  scout: Docker Scout (Docker Inc.)
+    Version:  v1.24.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-scout.exe
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 29.8.0
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Discovered Devices:
+  cdi: docker.com/gpu=webgpu
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 nvidia runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 1294c24a7da8e5a793ed378161673abe94118892
+ runc version: v1.5.1-0-g8f2685a4
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: builtin
+ Kernel Version: 5.15.153.1-microsoft-standard-WSL2
+ Operating System: Docker Desktop
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 3.757GiB
+ Name: docker-desktop
+ ID: a72988d6-b000-4e49-88a5-4bd2f6f0ee4f
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ HTTP Proxy: http.docker.internal:3128
+ HTTPS Proxy: http.docker.internal:3128
+ No Proxy: hubproxy.docker.internal
+ Labels:
+  com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+ Experimental: false
+ Insecure Registries:
+  hubproxy.docker.internal:5555
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Firewall Backend: iptables
+
+WARNING: No blkio throttle.read_bps_device support
+WARNING: No blkio throttle.write_bps_device support
+WARNING: No blkio throttle.read_iops_device support
+WARNING: No blkio throttle.write_iops_device support
+WARNING: Support for cgroup v1 is deprecated and planned to be removed by no later than May 2029 (https://github.com/moby/moby/issues/51111)
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> dir
+
+
+    Diretório: C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        30/09/2026     19:30                site
+-a----        30/09/2026     19:30           7598 enunciado.md
+
+
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> dir .\site
+
+
+    Diretório: C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b\site
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        30/09/2026     19:53           2701 index.html
+
+
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker info
+Client:
+ Version:    29.8.0
+ Context:    desktop-linux
+ Debug Mode: false
+ Plugins:
+  agent: Docker AI Agent Runner (Docker Inc.)
+    Version:  v1.140.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-agent.exe
+  ai: Docker AI Agent - Ask Gordon (Docker Inc.)
+    Version:  v1.31.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-ai.exe
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.37.1
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-buildx.exe
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.5.1
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-compose.exe
+  debug: Get a shell into any image or container (Docker Inc.)
+    Version:  0.0.47
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-debug.exe
+  desktop: Docker Desktop commands (Docker Inc.)
+    Version:  v0.4.4
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-desktop.exe
+  dhi: CLI for managing Docker Hardened Images (Docker Inc.)
+    Version:  v0.0.7
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-dhi.exe
+  extension: Manages Docker extensions (Docker Inc.)
+    Version:  v0.2.31
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-extension.exe
+  init: Creates Docker-related starter files for your project (Docker Inc.)
+    Version:  v1.4.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-init.exe
+  mcp: Docker MCP Plugin (Docker Inc.)
+    Version:  v0.43.3
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-mcp.exe
+  model: Docker Model Runner (Docker Inc.)
+    Version:  v1.2.6
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-model.exe
+  offload: Docker Offload (Docker Inc.)
+    Version:  v0.6.27
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-offload.exe
+  pass: Docker Pass Secrets Manager Plugin (beta) (Docker Inc.)
+    Version:  v0.2.2
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-pass.exe
+  sandbox: "docker sandbox" is deprecated, use Docker Sandboxes instead (Docker Inc.)
+    Version:  v0.13.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-sandbox.exe
+  scout: Docker Scout (Docker Inc.)
+    Version:  v1.24.0
+    Path:     C:\Users\aclar\.docker\cli-plugins\docker-scout.exe
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 0
+ Server Version: 29.8.0
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Discovered Devices:
+  cdi: docker.com/gpu=webgpu
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 nvidia runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 1294c24a7da8e5a793ed378161673abe94118892
+ runc version: v1.5.1-0-g8f2685a4
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: builtin
+ Kernel Version: 5.15.153.1-microsoft-standard-WSL2
+ Operating System: Docker Desktop
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 3.757GiB
+ Name: docker-desktop
+ ID: a72988d6-b000-4e49-88a5-4bd2f6f0ee4f
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ HTTP Proxy: http.docker.internal:3128
+ HTTPS Proxy: http.docker.internal:3128
+ No Proxy: hubproxy.docker.internal
+ Labels:
+  com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+ Experimental: false
+ Insecure Registries:
+  hubproxy.docker.internal:5555
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Firewall Backend: iptables
+
+WARNING: No blkio throttle.read_bps_device support
+WARNING: No blkio throttle.write_bps_device support
+WARNING: No blkio throttle.read_iops_device support
+WARNING: No blkio throttle.write_iops_device support
+WARNING: Support for cgroup v1 is deprecated and planned to be removed by no later than May 2029 (https://github.com/moby/moby/issues/51111)
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> $pastaSite = (Resolve-Path .\site).Path
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> $pastaSite = (Resolve-Path .\site).Path
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> $pastaSite
+C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b\site
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker run -d --name docker-b -p 127.0.0.1:8081:80 --mount "type=bind,source=$pastaSite,target=/usr/share/nginx/html,readonly" nginx:alpine
+Unable to find image 'nginx:alpine' locally
+alpine: Pulling from library/nginx
+e72112c14215: Pull complete
+6c53d0b2a666: Pull complete
+745dfb2690dd: Pull complete
+e76228b47809: Pull complete
+d9aae54b5831: Pull complete
+9a9a644fdd6a: Pull complete
+e2de96513ba9: Pull complete
+64c8194480fe: Pull complete
+0deea27e58d9: Download complete
+d54d3939625e: Download complete
+Digest: sha256:df221db836e1754089190208cee7eeda94f233197056426eda74a43ab1abeac2
+Status: Downloaded newer image for nginx:alpine
+70176d377ffd049bfa75d3cd5d3b0007bdd371da2b5afb69c4bb9ade6453e38e
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                    NAMES
+70176d377ffd   nginx:alpine   "/docker-entrypoint.…"   About a minute ago   Up About a minute   127.0.0.1:8081->80/tcp   docker-b
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker stop docker-b
+docker-b
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker rm docker-b
+docker-b
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> $pastaSite = (Resolve-Path .\site).Path
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker run -d --name docker-b -p 127.0.0.1:8091:80 --mount "type=bind,source=$pastaSite,target=/usr/share/nginx/html,readonly" nginx:alpine
+5bac065b9faa25fe210b30fca62360d41f70867752e1a80237b6c0f291884310
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                    NAMES
+5bac065b9faa   nginx:alpine   "/docker-entrypoint.…"   23 seconds ago   Up 22 seconds   127.0.0.1:8091->80/tcp   docker-b
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker stop docker-b
+docker-b
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker inspect --format '{{.State.Status}}' docker-b
+exited
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b> docker ps -a --filter name=docker-b
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS                      PORTS     NAMES
+5bac065b9faa   nginx:alpine   "/docker-entrypoint.…"   About a minute ago   Exited (0) 21 seconds ago             docker-b
+PS C:\Users\aclar\Downloads\30-09-docker-turma-b\turma-b>
